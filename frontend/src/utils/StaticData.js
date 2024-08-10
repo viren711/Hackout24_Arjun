@@ -1,4 +1,4 @@
-export const CompanyName = "Canopy Watch";
+export const CompanyName = "Arjun's Eye";
 export const CompanyTagline = "Preserve Our Forests: Monitor Deforestation, Secure Tomorrow's Green Legacy";
 
 export const MainPageLoadingDelay = 4000;
