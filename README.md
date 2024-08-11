@@ -3,6 +3,9 @@
 
 This project aims to monitor and conserve the environment using satellite imagery and advanced image segmentation techniques. We use Google Earth Engine to acquire satellite images across different bands and wavelengths, which are then processed using machine learning models like U-Net and Attention U-Net for image segmentation. The segmented images help in identifying and monitoring various environmental factors, such as deforestation, water bodies, and urban expansion.
 
+- Project URL: https://hackout24-arjun-cdlm.vercel.app/
+- Presentation: https://drive.google.com/drive/folders/15IYzBB7XNb55EBx345yVl6hZCwkoOD1w?usp=drive_link
+- Project UI:   https://youtu.be/oGLB3wIb90E
 
 ## Tech Stack
 
