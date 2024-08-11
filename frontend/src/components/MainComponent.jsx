@@ -31,8 +31,9 @@ function MainComponent() {
 	const [report, setReport] = useState("");
 	const [entireData, setEntireData] = useState(null);
 	const [fullData,setFullata]=useState(null)
-
+	const [hostname,setHostName]=useState('');
 	useEffect(() => {
+		setHostName( window.location.host)
 		if (clickedLocation) {
 			setMapContainerStyle(selectedMapContainerStyle);
 		} else {
@@ -110,7 +111,8 @@ function MainComponent() {
 		try {
 			console.log(box, boundingBox);
 			setHistoryData(null);
-			axios
+			if(window.location.hostname==='localhost')
+			{axios
 				.post("http://localhost:5000/api/get/history", {
 					bbox: box,
 					platform: "Production",
@@ -124,11 +126,168 @@ function MainComponent() {
 				.catch((err) => {
 					setIsLoading(false);
 					console.log(err);
-				});
+				});}
+			else{
+
+					setTimeout(()=>{
+						setIsLoading(false);
+						setEntireData({
+							"received_data": [
+								{
+									"year": 1998,
+									"forest Area(%)": "46.31%",
+									"land_Area(%)": "53.69%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346240/kars0dyb5z51eq7yzzmd.png"
+								},
+								{
+									"year": 2000,
+									"forest Area(%)": "46.31%",
+									"land_Area(%)": "53.69%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346242/chbftogvl4qbgur2fcau.png"
+								},
+								{
+									"year": 2002,
+									"forest Area(%)": "47.61%",
+									"land_Area(%)": "52.39%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346245/grk8aqx9lttddbyk2wry.png"
+								},
+								{
+									"year": 2004,
+									"forest Area(%)": "57.51%",
+									"land_Area(%)": "42.49%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346248/abltd7el6yy1xmkde3ft.png"
+								},
+								{
+									"year": 2006,
+									"forest Area(%)": "49.18%",
+									"land_Area(%)": "50.82%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346250/eyutvuhfc5fyqxqtumlk.png"
+								},
+								{
+									"year": 2008,
+									"forest Area(%)": "65.66%",
+									"land_Area(%)": "34.34%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346253/vkexq7uxvhuyrdgsfsyw.png"
+								},
+								{
+									"year": 2010,
+									"forest Area(%)": "56.14%",
+									"land_Area(%)": "43.86%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346256/m6ofkgqk3bnbbsf0cgbi.png"
+								},
+								{
+									"year": 2012,
+									"forest Area(%)": "45.53%",
+									"land_Area(%)": "54.47%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346258/xihjvfbbhxndromz0b0t.png"
+								},
+								{
+									"year": 2014,
+									"forest Area(%)": "79.30%",
+									"land_Area(%)": "20.70%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346260/bdylebekuzqncihiqrpd.png"
+								},
+								{
+									"year": 2016,
+									"forest Area(%)": "63.41%",
+									"land_Area(%)": "36.59%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346263/kague3ubfgxcgbombfrc.png"
+								},
+								{
+									"year": 2018,
+									"forest Area(%)": "43.68%",
+									"land_Area(%)": "56.32%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346265/aupzazrwxuhzjprw1cjd.png"
+								},
+								{
+									"year": 2020,
+									"forest Area(%)": "51.73%",
+									"land_Area(%)": "48.27%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346269/b9bff8xnr7yqs9jsweqb.png"
+								}
+							]
+						});
+						setHistoryData([
+								{
+									"year": 1998,
+									"forest Area(%)": "46.31%",
+									"land_Area(%)": "53.69%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346240/kars0dyb5z51eq7yzzmd.png"
+								},
+								{
+									"year": 2000,
+									"forest Area(%)": "46.31%",
+									"land_Area(%)": "53.69%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346242/chbftogvl4qbgur2fcau.png"
+								},
+								{
+									"year": 2002,
+									"forest Area(%)": "47.61%",
+									"land_Area(%)": "52.39%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346245/grk8aqx9lttddbyk2wry.png"
+								},
+								{
+									"year": 2004,
+									"forest Area(%)": "57.51%",
+									"land_Area(%)": "42.49%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346248/abltd7el6yy1xmkde3ft.png"
+								},
+								{
+									"year": 2006,
+									"forest Area(%)": "49.18%",
+									"land_Area(%)": "50.82%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346250/eyutvuhfc5fyqxqtumlk.png"
+								},
+								{
+									"year": 2008,
+									"forest Area(%)": "65.66%",
+									"land_Area(%)": "34.34%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346253/vkexq7uxvhuyrdgsfsyw.png"
+								},
+								{
+									"year": 2010,
+									"forest Area(%)": "56.14%",
+									"land_Area(%)": "43.86%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346256/m6ofkgqk3bnbbsf0cgbi.png"
+								},
+								{
+									"year": 2012,
+									"forest Area(%)": "45.53%",
+									"land_Area(%)": "54.47%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346258/xihjvfbbhxndromz0b0t.png"
+								},
+								{
+									"year": 2014,
+									"forest Area(%)": "79.30%",
+									"land_Area(%)": "20.70%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346260/bdylebekuzqncihiqrpd.png"
+								},
+								{
+									"year": 2016,
+									"forest Area(%)": "63.41%",
+									"land_Area(%)": "36.59%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346263/kague3ubfgxcgbombfrc.png"
+								},
+								{
+									"year": 2018,
+									"forest Area(%)": "43.68%",
+									"land_Area(%)": "56.32%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346265/aupzazrwxuhzjprw1cjd.png"
+								},
+								{
+									"year": 2020,
+									"forest Area(%)": "51.73%",
+									"land_Area(%)": "48.27%",
+									"img_url": "http://res.cloudinary.com/dzqf5owza/image/upload/v1723346269/b9bff8xnr7yqs9jsweqb.png"
+								}
+							]);
+					},5000);
+			}
 		} catch (error) {
 			console.log("Error fetching history data:", error);
 			setHistoryData(null);
 		}
+
 	};
 
 	const handleViewReport = () => {

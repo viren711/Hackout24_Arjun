@@ -4,8 +4,11 @@ import EntryComponent from './components/EntryComponent';
 
 function App() {
   const [showMainComponent, setShowMainComponent] = useState(false);
-
+  const [host,setHost]=useState('');
   useEffect(() => {
+    const currentUrl = window.location.href;
+    console.log( window.location.host);
+    setHost(window.location.host);
     const handleKeyPress = (event) => {
       if (event.key === 'Enter') {
         setShowMainComponent(true);
@@ -21,7 +24,7 @@ function App() {
 
   return (
     <>
-      {showMainComponent ? <MainComponent /> : <EntryComponent />}
+      {showMainComponent ? <MainComponent a={host} /> : <EntryComponent />}
     </>
   );
 }
