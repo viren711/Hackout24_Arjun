@@ -30,6 +30,7 @@ function MainComponent() {
 	const [showModal, setShowModal] = useState(false);
 	const [report, setReport] = useState("");
 	const [entireData, setEntireData] = useState(null);
+	const [fullData,setFullata]=useState(null)
 
 	useEffect(() => {
 		if (clickedLocation) {
@@ -45,6 +46,7 @@ function MainComponent() {
 				`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
 			);
 			const data = await response.json();
+			setFullata(data)
 			setLocationName(
 				[
 					data.address.country,
@@ -143,6 +145,7 @@ function MainComponent() {
 		<div
 			className={`App bg-blue-50 p-9 gap-5 flex flex-col items-center w-full h-screen`}
 		>
+			{console.log(locationName)}
 			<AnimatePresence>
 				{!clickedLocation && (
 					<motion.h1
@@ -212,6 +215,8 @@ function MainComponent() {
 				{showModal && (
 					<ReportPopup
 						entireData={entireData}
+						locationData={fullData}
+						// updateLocationName={updateLocationName}
 						handleCloseModal={handleCloseModal}
 					/>
 				)}

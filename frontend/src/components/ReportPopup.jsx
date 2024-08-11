@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HTMLReactParser from "html-react-parser";
+import ChartComponent from "./ChartComponent";
 
-export default function ReportPopup({ handleCloseModal, entireData }) {
+export default function ReportPopup({ handleCloseModal, entireData,locationData }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [report, setReport] = useState("");
 
@@ -13,7 +14,10 @@ export default function ReportPopup({ handleCloseModal, entireData }) {
 			try {
 				const response = await axios.post(
 					"http://localhost:5000/getBot",
-					entireData
+					{
+						entireData: entireData,
+						locationData: locationData
+					  }
 				);
 				setReport(HTMLReactParser(response.data.report));
 				console.log("response.data.report: ", response.data.report);
@@ -40,7 +44,10 @@ export default function ReportPopup({ handleCloseModal, entireData }) {
 						</p>
 					</div>
 				) : (
+					<>
 					<div>{report}</div>
+					{entireData.received_data.length>0 && <ChartComponent data={entireData} />}
+					</>
 				)}
 			</div>
 		</div>

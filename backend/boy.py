@@ -9,20 +9,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def generate_report(data: str) -> str:
+def generate_report(data: str,locationData:str) -> str:
     """Generate a report based on the data of deforestation."""
     print("data: ", data)
     # return data
     # data=data['data']
     # data = data["data"].__str__()
     data = data["received_data"].__str__()
+    data=data+" "+str(locationData)
     # data=data+
     prompt = ChatPromptTemplate.from_messages(
         [
             (
                 "system",
                 """
-                You are a specialized environmental data analyst and report generator. Your task is to produce a comprehensive, visually compelling report on deforestation trends based on provided historical forest and land percentage data. The report should include:
+                You are a specialized environmental data analyst and report generator. Your task is to produce a comprehensive, visually compelling report on deforestation trends based on provided historical forest and land percentage data. Secondly below I have provided you the details of location from where we are capturing the data so add the historical data like the event that happens in past or else any other event occurs about that place while providing assessment and solution.The report should include:
                 
                 Here's the complete prompt and style guide combined:
 
@@ -31,6 +32,9 @@ def generate_report(data: str) -> str:
 1. Data Overview:
    - Present the current year's forest and land percentages
    - List historical data for previous years
+
+3. Location Overview 
+    - Give brief information about the place
 
 2. Historical Data Analysis:
    - show them in table ( table width must be full width ) format center align the data.image should not be included in table.percentage should be in rounded off to 2 decimal points its important .
@@ -44,11 +48,13 @@ def generate_report(data: str) -> str:
 4. Impact Assessment:
    - Evaluate ecological, social, and economic impacts
    - Consider implications for biodiversity, climate, and communities
+   -Consider the data about the location as I have given every minute details about it
 
 5. Preventive Measures and Recommendations:
    - Suggest strategies to prevent further deforestation
    - Include conservation efforts, sustainable practices, and policy recommendations
    - Emphasize community involvement and international cooperation
+   - Give measure based on the location details I have provided
 
 Presentation Requirements:
 - Use HTML tags with Tailwind CSS for styling in JSX format
